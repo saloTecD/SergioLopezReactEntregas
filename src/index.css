@@ -2,10 +2,21 @@ body {
   margin: 0;
   height: 100vh;
   width: 100vw;
-  background-image: "../src/components/images/background.jpg";
+  background-image: url("./components/images/BGtRANSPARENTE.png");
+  background-size: cover;
+  color: white;
+ 
+  
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+#ContenedorNavBar a{
+  color: white;
+}
+#SubMenu a{
+  color: black;
 }
