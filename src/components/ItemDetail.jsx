@@ -10,7 +10,6 @@ const ItemDetail = ({ item }) => {
                 <div className="col d-flex align-items-center">
                     <div>
                         <h1>{item.nombre}</h1>
-                        <h5>{item.calorias} Kcal</h5>
                         <p>{item.descripcion}</p>
                         <p><b>${item.precio}</b></p>
                         <ItemCount stock={item.stock} />
