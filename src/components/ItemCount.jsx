@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ItemCount = ({ stock }) => {
     
@@ -20,12 +20,16 @@ const ItemCount = ({ stock }) => {
     const onAdd=()=>{
         if(itemStock>=items){
             setitemStock(itemStock-items)
-            setItems(itemStock)
-            // setItems(1)
+            // setItems(itemStock)
+             setItems(1)
             console.log("Agregaste: "+items+" Al Carrito")
         }
         
     }
+
+        useEffect(()=>{
+            setitemStock(stock)
+        },[stock])
 
     return (
         <div className="container">

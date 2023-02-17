@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
-import arrayProductos from "./json/productos.json"
+import arrayJuegos from "./json/games.json"
 const ItemDetailContainer = () => {
 
     const [item, setItem] = useState({});
@@ -10,7 +10,7 @@ const ItemDetailContainer = () => {
     useEffect(() => {
         const promesa = new Promise((resolve) => {
             setTimeout(() => {
-                resolve(arrayProductos.find(prod => prod.index === parseInt(id)))
+                resolve(arrayJuegos.find(prod => prod.id === parseInt(id)))
             }, 2000)
         })
         promesa.then((respuesta) => {
