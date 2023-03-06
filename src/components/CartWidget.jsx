@@ -1,8 +1,8 @@
-import { useContext } from "react";
 import cart from "./images/basket.svg"
 
 
 const CartWidget = () => {
+    
     
     return (
         

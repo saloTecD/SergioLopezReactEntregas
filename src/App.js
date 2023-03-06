@@ -7,6 +7,7 @@ import Error404 from "./components/Error404";
 
 
 
+
 function App() {
   return (
     
@@ -23,7 +24,7 @@ function App() {
 
         </div>
       </BrowserRouter>
-   
+     
   );
 }
 
