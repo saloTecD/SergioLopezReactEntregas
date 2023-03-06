@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 
-const ItemCount = ({ stock }) => {
+
+
+
+
+
+
+const ItemCount = ({stock}) => {
     
     const [items, setItems] = useState(1);
     const [itemStock,setitemStock]=useState(stock)
@@ -20,9 +26,10 @@ const ItemCount = ({ stock }) => {
     const onAdd=()=>{
         if(itemStock>=items){
             setitemStock(itemStock-items)
-            // setItems(itemStock)
+            
              setItems(1)
             console.log("Agregaste: "+items+" Al Carrito")
+            
         }
         
     }
@@ -32,6 +39,7 @@ const ItemCount = ({ stock }) => {
         },[stock])
 
     return (
+        
         <div className="container">
             <div className="row">
                 <div className="col">
@@ -48,8 +56,10 @@ const ItemCount = ({ stock }) => {
                     <button type="button" className="btn btn-primary" onClick={onAdd}>Agregar al Carrito</button>
                 </div>
             </div>
+            
         </div>
     )
 }
 
 export default ItemCount;
+
