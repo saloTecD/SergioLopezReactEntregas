@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
 import arrayJuegos from "./json/games.json"
+import {getFirestore} from "firebase/firestore"
 
 const ItemListContainer = () => {
 

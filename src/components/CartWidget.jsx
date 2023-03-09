@@ -8,7 +8,7 @@ const CartWidget = () => {
    
     const {cartTotal}=useContext(CartContext)
     
-    return (
+    return cartTotal() > 0 ?
        
         <Link to ={"/cart"} className="btn position-relative">
             
@@ -18,9 +18,9 @@ const CartWidget = () => {
                 
             </span>
         
-        </Link>
+        </Link> : "";
 
-    )
+    
 }
 
 export default CartWidget;
