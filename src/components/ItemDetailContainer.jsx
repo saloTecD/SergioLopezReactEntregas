@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
-import arrayJuegos from "./json/games.json"
+import {getDoc, getFirestore,doc} from "firebase/firestore"
 const ItemDetailContainer = () => {
 
     const [item, setItem] = useState({});
     const {id} = useParams();
 
-    useEffect(() => {
-        const promesa = new Promise((resolve) => {
-            setTimeout(() => {
-                resolve(arrayJuegos.find(prod => prod.id === parseInt(id)))
-            }, 2000)
+    
+
+    useEffect(()=>{
+        const db=getFirestore();
+        const document=doc(db,"Productos",id);
+        getDoc(document,id).then(element =>{
+            setItem({id:element.id, ...element.data()})
         })
-        promesa.then((respuesta) => {
-            setItem(respuesta)
-        })
-    }, [id])
+    },[id])
     return (
         <ItemDetail item={item} />
     )

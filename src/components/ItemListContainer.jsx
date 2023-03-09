@@ -1,26 +1,24 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
-import arrayJuegos from "./json/games.json"
-import {getFirestore} from "firebase/firestore"
+import {collection, getDocs, getFirestore, query, where} from "firebase/firestore"
 
 const ItemListContainer = () => {
 
     const [items, setItems] = useState([]);
     const { id } = useParams();
 
-    useEffect(() => {
-        const promesa = new Promise((resolve) => {
-            setTimeout(() => {
-                resolve(id ? arrayJuegos.filter(item => item.categoria === id) : arrayJuegos);
-            }, 2000)
+    
+    useEffect(()=>{
+
+        const db=getFirestore();
+        const itemsCollection= collection(db,"Productos");
+        const queryCat= id ? query(itemsCollection, where("categoria","==",id)) :itemsCollection;
+        getDocs(queryCat).then(elements=>{
+       setItems(elements.docs.map(element => ({id:element.id, ...element.data()})));
         });
-        promesa.then((respuesta) => {
-            setItems(respuesta)
-        })
 
-    }, [id])
-
+    },[id]);
 
     return (
 

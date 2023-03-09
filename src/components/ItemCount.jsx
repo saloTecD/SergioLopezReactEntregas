@@ -9,7 +9,7 @@ const ItemCount = ({stock, onAdd}) => {
     const [itemAdded,setItemAdded]=useState(false)
     
 
-    console.log("este "+items)
+    
     const incrementarStock = () => {
         if (items < itemStock) {
             setItems(items + 1)
@@ -27,7 +27,7 @@ const ItemCount = ({stock, onAdd}) => {
             setitemStock(itemStock-items)
             
              setItems(1)
-            console.log("Agregaste: "+items+" Al Carrito")
+            
             setItemAdded(true);
             onAdd(items);
         }
