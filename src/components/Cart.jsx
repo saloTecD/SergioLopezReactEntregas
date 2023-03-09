@@ -9,7 +9,9 @@ const Cart = () => {
     const [nombre, setNombre] = useState("")
     const [telefono, setTelefono] = useState("")
     const [email, setEmail] = useState("")
+    const [emailConfirm, setEmailConfirm]=useState("")
     const [orderId, setOrderId] = useState("")
+    const [valido,setValido]=useState(false)
 
     const { cart, cartTotal, removeItem, clear, cartSum } = useContext(CartContext)
 
@@ -31,6 +33,14 @@ const Cart = () => {
         setTimeout(()=>{
             clear()
         },"2000")
+    }
+
+    const validarEmail=()=>{
+        if(email!==emailConfirm){
+            setValido(true)
+        }else{
+            setValido(false)
+        }
     }
      if (cartTotal() === 0 && orderId==="") {
          return (
@@ -61,18 +71,25 @@ const Cart = () => {
                     <form>
                         <div className="mb-3">
                             <label htmlFor="nombre" className="form-label">Nombre</label>
-                            <input type="text" className="form-control" id="nombre" onInput={(e) => { setNombre(e.target.value) }} />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="email" className="form-label">Email</label>
-                            <input type="text" className="form-control" id="email" onInput={(e) => { setEmail(e.target.value) }} />
+                            <input type="text" className="form-control" id="nombre" onInput={(e) => { setNombre(e.target.value) }} required/>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="telefono" className="form-label">Telefono</label>
-                            <input type="text" className="form-control" id="telefono" onInput={(e) => { setTelefono(e.target.value) }} />
+                            <input type="text" className="form-control" id="telefono" onInput={(e) => { setTelefono(e.target.value) }} required/>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="email" className="form-label">Email</label>
+                            <input type="text" className="form-control" id="email" onInput={(e) => { setEmail(e.target.value) }} required/>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="emailConfirm" className="form-label">Confirma tu Email</label>
+                            <input type="text" className="form-control" id="emailConfirm" onBlur={(e) => { validarEmail()
+                            setEmailConfirm(e.target.value)}} onChange={(e) => { validarEmail()
+                                setEmailConfirm(e.target.value)}}/>
+                            {valido ? <div id="emailHelp" className="form-text text-bg-danger">El Email no coincide</div>:""}
                         </div>
 
-                        <button type="button" className="btn btn-primary" onClick={generarOrden}>Generar Compra</button>
+                        <button type="button" className="btn btn-primary" onClick={generarOrden} disabled={valido} >Generar Compra</button>
                     </form>
                 </div>
                 <div className="col">
