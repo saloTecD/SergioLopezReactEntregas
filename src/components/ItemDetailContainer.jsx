@@ -1,24 +1,42 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
-import arrayJuegos from "./json/games.json"
+import { getDoc, getFirestore, doc } from "firebase/firestore"
+import { Link} from "react-router-dom";
+import Loading from "./Loading";
 const ItemDetailContainer = () => {
 
     const [item, setItem] = useState({});
-    const {id} = useParams();
+    const { id } = useParams();
+    const [idExist, setIdExist] = useState(true)
+    const [loading,setLoading]=useState(true)
+
 
     useEffect(() => {
-        const promesa = new Promise((resolve) => {
-            setTimeout(() => {
-                resolve(arrayJuegos.find(prod => prod.id === parseInt(id)))
-            }, 2000)
-        })
-        promesa.then((respuesta) => {
-            setItem(respuesta)
+        const db = getFirestore();
+        const document = doc(db, "Productos", id);
+        getDoc(document, id).then(element => {
+            setItem({ id: element.id, ...element.data() })
+            setLoading(false)
+            if (element._document === null) {
+                console.log("entro a null")
+                setIdExist(false)
+            }
+
         })
     }, [id])
+
+    if (idExist === false) {
+        return (
+            <div className="alert alert-warning text-center" role="alert">
+                <h3><b> El Producto que estas buscando no existe</b></h3>
+                <h3><Link className="navbar-brand" to="/"><b> Haz click para ir a nuestro menu principal</b></Link></h3>
+            </div>
+        )
+    }
     return (
-        <ItemDetail item={item} />
+
+        loading ? <Loading /> :<ItemDetail item={item} />
     )
 }
 

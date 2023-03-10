@@ -5,6 +5,7 @@ body {
   background-image: url("./components/images/BGtRANSPARENTE.png");
   background-size: cover;
   color: white;
+  padding: 0%;
  
   
 }
@@ -19,4 +20,21 @@ code {
 }
 #SubMenu a{
   color: black;
+}
+
+.btnVaciarCarrito{
+  border-radius: 15px;
+  border: none;
+  background-color: gray;
+  color: white;
+  font-weight: bolder;
+}
+.cellTotal{
+  background-color: gray;
+  font-weight: bolder;
+}
+.table-color{
+  color: #F2F2F2;
+  font-size: 18px;
+  font-weight: 500;
 }
