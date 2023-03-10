@@ -4,8 +4,8 @@ const Loading = () => {
             <div className="row">
                 <div className="col text-center">
                     <h1 className="text-light">Cargando...</h1>
-                    <div class="spinner-border text-light" role="status">
-                        <span class="visually-hidden">Loading...</span>
+                    <div className="spinner-border text-light" role="status">
+                        <span className="visually-hidden">Loading...</span>
                     </div>
                 </div>
             </div>
