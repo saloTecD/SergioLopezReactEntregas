@@ -5,9 +5,9 @@ import ItemCount from "./ItemCount";
 
 const ItemDetail = ({ item }) => {
 
-    const {addItem}=useContext(CartContext);
+    const { addItem } = useContext(CartContext);
 
-    const onAdd=(quantity)=>{
+    const onAdd = (quantity) => {
         addItem(item, quantity)
     }
 
@@ -24,7 +24,7 @@ const ItemDetail = ({ item }) => {
                         <p><b>${item.precio}</b></p>
                         <ItemCount stock={item.stock} onAdd={onAdd} />
                     </div>
-                    
+
                 </div>
             </div>
         </div>

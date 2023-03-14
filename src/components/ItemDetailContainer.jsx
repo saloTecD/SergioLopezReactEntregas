@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
 import { getDoc, getFirestore, doc } from "firebase/firestore"
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Loading from "./Loading";
 const ItemDetailContainer = () => {
 
     const [item, setItem] = useState({});
     const { id } = useParams();
     const [idExist, setIdExist] = useState(true)
-    const [loading,setLoading]=useState(true)
+    const [loading, setLoading] = useState(true)
 
 
     useEffect(() => {
@@ -36,7 +36,7 @@ const ItemDetailContainer = () => {
     }
     return (
 
-        loading ? <Loading /> :<ItemDetail item={item} />
+        loading ? <Loading /> : <ItemDetail item={item} />
     )
 }
 

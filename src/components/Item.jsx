@@ -15,4 +15,3 @@ const Item = ({ item }) => {
 }
 export default Item;
 
-// {item.imagen}

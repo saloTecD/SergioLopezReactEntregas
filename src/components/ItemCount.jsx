@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 
-const ItemCount = ({stock, onAdd}) => {
-    
+const ItemCount = ({ stock, onAdd }) => {
+
     const [items, setItems] = useState(1);
-    const [itemStock,setitemStock]=useState(stock)
-    const [itemAdded,setItemAdded]=useState(false)
-    
+    const [itemStock, setitemStock] = useState(stock)
+    const [itemAdded, setItemAdded] = useState(false)
 
-    
+
+
     const incrementarStock = () => {
         if (items < itemStock) {
             setItems(items + 1)
@@ -21,28 +21,28 @@ const ItemCount = ({stock, onAdd}) => {
             setItems(items - 1)
         }
     }
-    
-    const addToCart=()=>{
-        if(itemStock>=items){
-            setitemStock(itemStock-items)
-            
-             setItems(1)
-            
+
+    const addToCart = () => {
+        if (itemStock >= items) {
+            setitemStock(itemStock - items)
+
+            setItems(1)
+
             setItemAdded(true);
             onAdd(items);
         }
-        
+
     }
 
-        useEffect(()=>{
-            setitemStock(stock)
-        },[stock])
+    useEffect(() => {
+        setitemStock(stock)
+    }, [stock])
 
     return (
-        
+
         <div className="container">
-            
-            
+
+
             <div className="row my-5">
                 <div className="col">
                     <div className="btn-group" role="group" aria-label="Basic example">
@@ -55,11 +55,11 @@ const ItemCount = ({stock, onAdd}) => {
             </div>
             <div className="row my-5">
                 <div className="col">
-                    {itemAdded ? <Link to={"/cart"} className="btn btn-primary me-5">terminar compra</Link>:""}
+                    {itemAdded ? <Link to={"/cart"} className="btn btn-primary me-5">terminar compra</Link> : ""}
                     <button type="button" className="btn btn-primary" onClick={addToCart}>Agregar al Carrito</button>
                 </div>
             </div>
-            
+
         </div>
     )
 }

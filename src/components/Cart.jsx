@@ -26,34 +26,35 @@ const Cart = () => {
 
         // codigo de validacion de campos formulario
 
-        if(nombre.length===0){
+        if (nombre.length === 0) {
             setValidoNombre(true)
             return false;
-        }else{
+        } else {
             setValidoNombre(false)
         }
-        if(telefono.length===0){
+        if (telefono.length === 0) {
             setValidoTelefono(true)
             return false;
-        }else{
+        } else {
             setValidoTelefono(false)
         }
-        if(email.length===0){
+        if (email.length === 0) {
             setValidoEmail(true)
             return false;
-        }else{
+        } else {
             setValidoEmail(false)
         }
-        if(emailConfirm.length===0){
+        if (emailConfirm.length === 0) {
             setValido(true)
-            return false;}
+            return false;
+        }
 
         // fin codigo de validacion formulario
 
         const db = getFirestore()
         const orderCollection = collection(db, "orders")
 
-        
+
 
 
         addDoc(orderCollection, order).then(data => {
